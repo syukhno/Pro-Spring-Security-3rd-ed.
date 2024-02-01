@@ -20,7 +20,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SpringSecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter ;
-    private final CustomerUserDetailsService customerUserDetailsService ;
 
     @Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception
