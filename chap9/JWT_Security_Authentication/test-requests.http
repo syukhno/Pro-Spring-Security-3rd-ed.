@@ -1,0 +1,40 @@
+
+POST  http://localhost:8080/api/user/register
+content-type: application/json
+
+{
+"firstName": "Massimo",
+"lastName": "Nardone",
+"email": "mmassimo@gmail.com",
+"password": "masspasswd",
+"userRole": "user"
+}
+
+###
+
+POST http://localhost:8080/api/user/authenticate
+content-type: application/json
+//Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtbWFzc2ltb0BnbWFpbC5jb20iLCJyb2xlIjpbIlVTRVIiXSwiaWF0IjoxNzA2Nzg5MjA3LCJleHAiOjE3MDY4MjUyMDd9.Syr30rE3WuPAWyCeDSkTUdQdhuNMiTMqUglrAacmrN4
+
+{
+    "email": "mmassimo@gmail.com",
+    "password": "masspasswd"
+}
+
+###
+
+POST  http://localhost:8080/api/user/register
+content-type: application/json
+
+{
+"firstName": "Neve",
+"lastName": "Nardon",
+"email": "neve@gmail.com",
+"password": "nevepasswd",
+"userRole": "admin"
+}
+
+###
+
+GET http://localhost:8080/api/admin/hello
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuZXZlQGdtYWlsLmNvbSIsInJvbGUiOlsiQURNSU4iXSwiaWF0IjoxNzA2Nzg5NTUxLCJleHAiOjE3MDY4MjU1NTF9.gZxSY91w3HVrBYS6WOd1CfeIdptxpN5D3a3W4DJoGUY
