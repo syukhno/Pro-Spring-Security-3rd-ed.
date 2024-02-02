@@ -1,3 +1,7 @@
+volumes:
+  postgres:
+  pgadmin:
+
 services:
   postgres:
     image: 'postgres:latest'
@@ -5,5 +9,25 @@ services:
       - 'POSTGRES_DB=jwtsecuritydb'
       - 'POSTGRES_PASSWORD=postgres'
       - 'POSTGRES_USER=postgres'
+      - 'PGDATA=/data/postgres'
+    volumes:
+      - postgres:/data/postgres
+#      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
     ports:
       - '5432:5432'
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@localhost.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_LISTEN_PORT: 5050
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+      - ./docker_pgadmin_servers.json:/pgadmin4/servers.json
+    ports:
+      - '5050:5050'
+    entrypoint:
+      - "/bin/sh"
+      - "-c"
+      - "/bin/echo 'postgres:5432:*:postgres:postgres' > /tmp/pgpassfile && chmod 600 /tmp/pgpassfile && /entrypoint.sh"
